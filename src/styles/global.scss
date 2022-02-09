@@ -1,0 +1,62 @@
+*,
+::after,
+::before {
+   margin: 0;
+   padding: 0;
+}
+html {
+   //defines what 1rem is
+   font-size: 62.5%; //1 rem = 10px
+}
+body {
+   font-family: "Arima Madurai", cursive;
+   background: rgb(248, 248, 248);
+   margin: 0;
+   font-size: 1.4rem;
+}
+
+h1 {
+   font-size: 4.5rem;
+}
+h2 {
+   font-size: 3.2rem;
+}
+h3 {
+   font-size: 2.5rem;
+}
+h4 {
+   font-size: 2rem;
+}
+h5 {
+   font-size: 1.8rem;
+}
+h6 {
+   font-size: 1.6rem;
+}
+p {
+   font-size: 1.4rem;
+}
+
+.main__container {
+   min-height: 100vh;
+}
+
+@media (min-width: 1024px) {
+   .main__container {
+      margin: 30px;
+      min-height: calc(100vh - 60px);
+   }
+}
+
+.form-control {
+   border-bottom: 1px solid rgb(179, 179, 179);
+   outline: none;
+   display: block;
+   transition: all 0.3s;
+   &:focus {
+      border-bottom: 1px solid rgb(41, 41, 41);
+   }
+}
+.min-h-90 {
+   min-height: 90vh;
+}

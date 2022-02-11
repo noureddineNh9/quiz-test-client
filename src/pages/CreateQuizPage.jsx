@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
+import CreateQuizForm from "../components/CreateQuizForm/CreateQuizForm";
 import { socket } from "../service/socket";
+import audio from "../assets/audios/click.wav";
 
 const InitialState = {
    quizOver: false,
    quizStart: false,
    candidatesData: [],
    roomCreated: false,
+   room: "",
 };
 
-function CreateQuiz() {
+function CreateQuizPage() {
    const [roomInputValue, setRoomInputValue] = useState("");
    const [QuizInfos, setQuizInfos] = useState(InitialState);
 
@@ -27,6 +30,7 @@ function CreateQuiz() {
       });
 
       socket.on("candidate-joind", (data) => {
+         new Audio(audio).play();
          setQuizInfos((prevState) => {
             return {
                ...prevState,
@@ -64,40 +68,24 @@ function CreateQuiz() {
       });
    }, []);
 
-   const createRoom = () => {
-      console.log(roomInputValue);
-      socket.emit("create-room", {
-         roomName: roomInputValue,
+   const createRoom = (formValue) => {
+      socket.emit("create-room", formValue);
+      setQuizInfos({
+         ...QuizInfos,
+         room: formValue.room,
       });
    };
 
    const startQuiz = () => {
       socket.emit("start-quiz", {
-         roomName: roomInputValue,
+         roomName: QuizInfos.room,
       });
-   };
-
-   const onRoomInputChange = (e) => {
-      setRoomInputValue(e.target.value);
    };
 
    return (
       <div className="create__quiz__part ">
          {!QuizInfos.roomCreated ? (
-            <div className="max-w-xl mx-auto">
-               <input
-                  className="form-control w-full h-12 py-4 mb-8"
-                  onChange={onRoomInputChange}
-                  type="text"
-                  name="room"
-                  placeholder="Room Name"
-               />
-               <div className="flex justify-center my-12">
-                  <button className="button__1" onClick={createRoom}>
-                     create
-                  </button>
-               </div>
-            </div>
+            <CreateQuizForm onSubmit={createRoom} />
          ) : !QuizInfos.quizStart && !QuizInfos.quizOver ? (
             <div className="md:grid md:grid-cols-3 mx-auto border">
                <div className="p-8 border-r border-gray-100 col-span-2">
@@ -171,7 +159,23 @@ function CreateQuiz() {
             </div>
          ) : QuizInfos.quizStart && QuizInfos.quizOver ? (
             <div className="text-center">
-               <h2 className="text-7xl">Quiz Over</h2>
+               <h2 className="text-7xl mb-8">Quiz Over</h2>
+               <ul className="candidates__list border max-w-3xl mx-auto">
+                  {QuizInfos.candidatesData
+                     .sort((a, b) => b.score - a.score)
+                     .map((con, index) => (
+                        <li
+                           key={index}
+                           className="candidates__item flex justify-between "
+                        >
+                           <div className="flex ">
+                              <img src="/assets/icons/candidate.svg" />
+                              <h5 className="">{con.candidateName}</h5>
+                           </div>
+                           <span className="score ">{con.score}</span>
+                        </li>
+                     ))}
+               </ul>
             </div>
          ) : (
             <div>
@@ -180,7 +184,7 @@ function CreateQuiz() {
          )}
       </div>
    );
-
+   /*
    if (!QuizInfos.roomCreated) {
       return (
          <div>
@@ -259,6 +263,7 @@ function CreateQuiz() {
          </div>
       );
    }
+   */
 }
 
-export default CreateQuiz;
+export default CreateQuizPage;

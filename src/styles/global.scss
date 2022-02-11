@@ -1,3 +1,5 @@
+$color-yellow: #fee367;
+
 *,
 ::after,
 ::before {
@@ -57,6 +59,65 @@ p {
       border-bottom: 1px solid rgb(41, 41, 41);
    }
 }
+
 .min-h-90 {
    min-height: 90vh;
+}
+
+.button__1 {
+   border-radius: 4px;
+   padding: 7px 15px;
+   background-color: $color-yellow;
+   width: 120px;
+   background-image: -webkit-linear-gradient(
+      top,
+      transparent 0%,
+      rgba(0, 0, 0, 0.144) 100%
+   );
+   transition: all 0.13s;
+
+   &:hover {
+      background-color: #ffea8e;
+   }
+   &:active {
+      transform: translateY(1.3px);
+   }
+}
+
+.button__2 {
+   border-radius: 25px;
+   border: 1px solid #000000;
+   padding: 4px 10px;
+   background-color: transparent;
+   width: 120px;
+   color: #000000;
+
+   transition: all 0.2s;
+
+   &:hover {
+      background-color: rgba(0, 0, 0, 0.096);
+   }
+   &:active {
+      transform: translateY(1.3px);
+   }
+}
+
+.choice__blue {
+   background-color: rgba(85, 159, 255, 0.562);
+}
+.choice__red {
+   background-color: rgba(255, 86, 86, 0.596);
+}
+.choice__yellow {
+   background-color: rgba(255, 244, 86, 0.603);
+}
+.choice__green {
+   background-color: rgba(86, 255, 114, 0.582);
+}
+
+.choice__purple {
+   background-color: rgba(131, 86, 255, 0.603);
+}
+.choice__pink {
+   background-color: rgba(241, 86, 255, 0.582);
 }

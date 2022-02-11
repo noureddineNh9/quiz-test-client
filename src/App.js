@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import CreateQuiz from "./pages/CreateQuiz";
+import CreateQuizPage from "./pages/CreateQuizPage";
 import HomePage from "./pages/HomePage";
-import JoinQuiz from "./pages/JoinQuiz";
+import JoinQuizPage from "./pages/JoinQuizPage";
 
 function App() {
    return (
@@ -12,8 +12,8 @@ function App() {
             <div className="p-8">
                <Routes>
                   <Route exact path="/" element={<HomePage />} />
-                  <Route path="/join" element={<JoinQuiz />} />
-                  <Route path="/create" element={<CreateQuiz />} />
+                  <Route path="/join" element={<JoinQuizPage />} />
+                  <Route path="/create" element={<CreateQuizPage />} />
                </Routes>
             </div>
          </div>

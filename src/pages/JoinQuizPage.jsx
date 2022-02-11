@@ -8,7 +8,7 @@ const InitialState = {
    condidateJoind: false,
 };
 
-function JoinQuiz() {
+function JoinQuizPage() {
    const [nameInputValue, setNameInputValue] = useState("");
    const [roomInputValue, setRoomInputValue] = useState("");
    const [canISendAnswer, setCanISendAnswer] = useState(false);
@@ -208,7 +208,23 @@ function JoinQuiz() {
             </div>
          ) : QuizInfos.quizStart && QuizInfos.quizOver ? (
             <div className="text-center">
-               <h2 className="text-7xl">Quiz Over</h2>
+               <h2 className="text-7xl mb-8">Quiz Over</h2>
+               <ul className="candidates__list  max-w-3xl mx-auto">
+                  <h3 className="text-center mb-8">
+                     Your Score :
+                     {
+                        QuizInfos.candidatesData.filter(
+                           (c) => c.id == socket.id
+                        )[0].score
+                     }
+                  </h3>
+                  {QuizInfos.candidatesData.sort((a, b) => b.score - a.score)[0]
+                     .id === socket.id ? (
+                     <h2 className="text-center">You Win 🥳</h2>
+                  ) : (
+                     <h2 className="text-center">You Lose 😞</h2>
+                  )}
+               </ul>
             </div>
          ) : (
             <div>
@@ -312,4 +328,4 @@ function JoinQuiz() {
    }
 }
 
-export default JoinQuiz;
+export default JoinQuizPage;

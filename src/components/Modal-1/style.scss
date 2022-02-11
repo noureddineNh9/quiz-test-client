@@ -1,0 +1,90 @@
+.modal {
+   left: 0;
+   position: fixed;
+   background: rgba(0, 0, 0, 0.39);
+   display: inline-block;
+   top: 0;
+   height: 100%;
+   width: 100%;
+   z-index: 100;
+   opacity: 1;
+   transition: all 0.3s ease;
+   .modal__wrap {
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 50px 25px;
+      position: relative;
+      height: 80%;
+      width: 60%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      transition: all 0.2s ease;
+      overflow-y: auto;
+      overflow-x: hidden;
+
+      &::-webkit-scrollbar {
+         width: 0.5em;
+      }
+
+      &::-webkit-scrollbar-track {
+         box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      }
+
+      &::-webkit-scrollbar-thumb {
+         background-color: rgba(129, 129, 129, 0.521);
+      }
+
+      .close {
+         position: absolute;
+         right: 15px;
+         top: 15px;
+         padding: 18px 20px;
+         background-color: rgb(233, 233, 233);
+         border: none;
+         transition: all 0.2s;
+
+         &::before {
+            content: "";
+            width: 60%;
+            height: 1px;
+            position: absolute;
+            background: rgb(143, 143, 143);
+            left: 50%;
+            bottom: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+         }
+         &::after {
+            content: "";
+            width: 60%;
+            height: 1px;
+            position: absolute;
+            background: rgb(139, 139, 139);
+            left: 50%;
+            bottom: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+         }
+         &:hover {
+            background-color: rgba(0, 0, 0, 0.644);
+            &::before,
+            &::after {
+               background-color: #fff;
+            }
+         }
+      }
+   }
+}
+
+@media (max-width: 800px) {
+   .modal__wrap {
+      width: 100% !important;
+      height: 100% !important;
+   }
+}
+.disableModal {
+   opacity: 0;
+   z-index: -10;
+   .modal__wrap {
+      transform: translate(-50%, -50%) scale(0);
+   }
+}

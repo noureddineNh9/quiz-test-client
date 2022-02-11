@@ -5,7 +5,6 @@ function HomePage() {
    return (
       <div className="homepage">
          <h2 className="text-center">Welcome to Quiz Test</h2>
-
          <ul>
             <Link to="/join">Join Quiz</Link>
 

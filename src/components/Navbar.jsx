@@ -3,11 +3,26 @@ import $ from "jquery";
 
 function Navbar() {
    const [currentEmoji, setCurrentEmoji] = useState(2);
-   const [StarNumber, setStarNumber] = useState(1330);
+   const [StarNumber, setStarNumber] = useState(0);
 
    useEffect(() => {
       bubbles();
+      fetch("http://localhost:5000/stars").then((res) => {
+         res.json().then((data) => {
+            setStarNumber(data.stars);
+         });
+      });
    }, []);
+
+   function increaseStars() {
+      fetch("http://localhost:5000/increaseStars").then((res) => {
+         fetch("http://localhost:5000/stars").then((res) => {
+            res.json().then((data) => {
+               setStarNumber(data.stars);
+            });
+         });
+      });
+   }
 
    function hearts() {
       $.each($(".emoji"), function () {
@@ -70,7 +85,6 @@ function Navbar() {
             { borderSpacing: 0.1 },
             {
                start: function () {
-                  console.log($(this).css("transform"));
                   $(this).css("transform", "scale(1.15)");
                },
                duration: 200,
@@ -89,7 +103,8 @@ function Navbar() {
          setTimeout(() => {
             removeParticle();
          }, 1000);
-         setStarNumber(StarNumber + 1);
+         //setStarNumber(StarNumber + 1);
+         increaseStars();
       }
    }
 

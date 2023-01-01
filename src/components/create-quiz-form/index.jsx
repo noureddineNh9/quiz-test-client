@@ -1,32 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./style.scss";
-import Modal from "../Modal-1";
+import Modal from "../modal";
 import $ from "jquery";
 
 const InitialState = {
    questions: [
-      {
-         question: "question number 0 ... ?",
-         choices: [
-            {
-               choice: "choice 1",
-               color: "red",
-            },
-            {
-               choice: "choice 2",
-               color: "green",
-            },
-            {
-               choice: "choice 3",
-               color: "blue",
-            },
-            {
-               choice: "choice 4",
-               color: "yellow",
-            },
-         ],
-         answer: 1,
-      },
       {
          question: "question number 1 ... ?",
          choices: [
@@ -50,10 +28,9 @@ const InitialState = {
          answer: 1,
       },
    ],
-   room: "",
 };
 
-function CreateQuizForm(props) {
+function CreateQuizForm({ onSubmit }) {
    const [FormValue, setFormValue] = useState(InitialState);
    const [FormErrors, setFormErrors] = useState("");
    const [QuestionFormError, setQuestionFormError] = useState("");
@@ -63,9 +40,9 @@ function CreateQuizForm(props) {
       resetQuestionForm();
    }, []);
 
-   useEffect(() => {
-      console.log(FormValue);
-   }, [FormValue]);
+   // useEffect(() => {
+   //    console.log(FormValue);
+   // }, [FormValue]);
 
    const resetQuestionForm = () => {
       setQuestionFormError("");
@@ -102,13 +79,6 @@ function CreateQuizForm(props) {
                value="1"
             />
          </div>`);
-   };
-
-   const onRoomInputChange = (e) => {
-      setFormValue({
-         ...FormValue,
-         room: e.target.value,
-      });
    };
 
    const toggleModal = () => {
@@ -156,7 +126,6 @@ function CreateQuizForm(props) {
       QuestionObject.question = $("#question").val();
       $("#choices-list input[type=text]").each(function (index) {
          var input = $(this);
-         console.log(input.val());
          QuestionObject.choices.push({
             choice: input.val(),
          });
@@ -184,7 +153,6 @@ function CreateQuizForm(props) {
          ...FormValue,
          questions: newQuestions,
       });
-      console.log(newQuestions);
    };
 
    const formIsValide = () => {
@@ -224,27 +192,14 @@ function CreateQuizForm(props) {
       }
       return newQuestions;
    };
-   async function getAllData() {
-      return new Promise((resolve, reject) => {
-         const newQuestions = addColorsToChoices();
-         setFormValue((prevState) => {
-            return {
-               ...prevState,
-               questions: [],
-            };
-         });
-         //resolve();
-      });
-   }
 
-   const onSubmit = () => {
+   const onFormSubmit = () => {
       if (formIsValide()) {
          const newQuestions = addColorsToChoices();
          const data = {
             questions: newQuestions,
-            room: FormValue.room,
          };
-         props.onSubmit(data);
+         onSubmit(data);
       } else {
          console.log("form not valide");
       }
@@ -253,18 +208,18 @@ function CreateQuizForm(props) {
    return (
       <div className="create__quiz__form border bg-">
          <div className="max-w-5xl mx-auto p-8">
-            <input
+            {/* <input
                className="form-control max-w-sm h-12 py-4 mb-8"
                type="text"
                name="room"
                placeholder="Room Name"
                onChange={onRoomInputChange}
-            />
+            /> */}
             <button className="button__2 mb-8" onClick={toggleModal}>
                Add question
             </button>
             {FormValue.questions.map((obj, index) => (
-               <div className="flex justify-between py-4 border-b">
+               <div key={index} className="flex justify-between py-4 border-b">
                   <h3>
                      <strong>{`Q${index + 1} - `}</strong>
 
@@ -279,7 +234,7 @@ function CreateQuizForm(props) {
                </div>
             ))}
             <div className="flex justify-center my-12">
-               <button className="button__1" onClick={onSubmit}>
+               <button className="button__1" onClick={onFormSubmit}>
                   create
                </button>
             </div>

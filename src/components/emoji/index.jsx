@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import $ from "jquery";
 
-function Navbar() {
+import { API_BASE_URL } from "configs/AppConfig";
+
+function Emoji() {
    const [currentEmoji, setCurrentEmoji] = useState(2);
    const [StarNumber, setStarNumber] = useState(0);
 
    useEffect(() => {
       bubbles();
-      fetch("http://localhost:5000/stars").then((res) => {
+      fetch(`${API_BASE_URL}/stars`).then((res) => {
          res.json().then((data) => {
             setStarNumber(data.stars);
          });
@@ -15,7 +17,8 @@ function Navbar() {
    }, []);
 
    function increaseStars() {
-      fetch("http://localhost:5000/increaseStars").then((res) => {
+      fetch(`${API_BASE_URL}/increaseStars`).then((res) => {
+         setStarNumber(StarNumber + 1);
          fetch("http://localhost:5000/stars").then((res) => {
             res.json().then((data) => {
                setStarNumber(data.stars);
@@ -109,14 +112,11 @@ function Navbar() {
    }
 
    return (
-      <div className="flex justify-between bg-white p-8">
-         <img src="/assets/logo-1.png" alt="logo" className="h-20 " />
-         <div onClick={animate} className="emoji">
-            <img id="emoji-img" src="/assets/icons/emoji-1.png" alt="" />
-            <span className="start__number">{StarNumber}</span>
-         </div>
+      <div onClick={animate} className="emoji">
+         <img id="emoji-img" src="/assets/icons/emoji-1.png" alt="" />
+         <span className="start__number">{StarNumber}</span>
       </div>
    );
 }
 
-export default Navbar;
+export default Emoji;

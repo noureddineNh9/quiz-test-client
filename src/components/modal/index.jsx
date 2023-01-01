@@ -5,7 +5,7 @@ function index(props) {
    return (
       <>
          <div id="modal" className="modal disableModal">
-            <div class="modal__wrap">
+            <div className="modal__wrap">
                <button className="close" onClick={props.onClose}></button>
                <div>{props.children}</div>
             </div>

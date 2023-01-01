@@ -1,8 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import CreateQuizPage from "./pages/CreateQuizPage";
-import HomePage from "./pages/HomePage";
-import JoinQuizPage from "./pages/JoinQuizPage";
+import Navbar from "./components/navbar";
+import AppRoutes from "routes/index";
+import Emoji from "components/emoji";
 
 function App() {
    return (
@@ -10,12 +9,9 @@ function App() {
          <div className="main__container rounded-sm bg-white">
             <Navbar />
             <div className="p-8">
-               <Routes>
-                  <Route exact path="/" element={<HomePage />} />
-                  <Route path="/join" element={<JoinQuizPage />} />
-                  <Route path="/create" element={<CreateQuizPage />} />
-               </Routes>
+               <AppRoutes />
             </div>
+            <Emoji />
          </div>
       </BrowserRouter>
    );

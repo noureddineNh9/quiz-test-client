@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/quiz-test-client/static/css/main.503dabb3.chunk.css",
-    "main.js": "/quiz-test-client/static/js/main.97e9a806.chunk.js",
-    "main.js.map": "/quiz-test-client/static/js/main.97e9a806.chunk.js.map",
-    "runtime-main.js": "/quiz-test-client/static/js/runtime-main.50925f23.js",
-    "runtime-main.js.map": "/quiz-test-client/static/js/runtime-main.50925f23.js.map",
-    "static/js/2.26bee750.chunk.js": "/quiz-test-client/static/js/2.26bee750.chunk.js",
-    "static/js/2.26bee750.chunk.js.map": "/quiz-test-client/static/js/2.26bee750.chunk.js.map",
-    "static/js/3.7cb42a9c.chunk.js": "/quiz-test-client/static/js/3.7cb42a9c.chunk.js",
-    "static/js/3.7cb42a9c.chunk.js.map": "/quiz-test-client/static/js/3.7cb42a9c.chunk.js.map",
-    "index.html": "/quiz-test-client/index.html",
-    "static/css/main.503dabb3.chunk.css.map": "/quiz-test-client/static/css/main.503dabb3.chunk.css.map",
-    "static/js/2.26bee750.chunk.js.LICENSE.txt": "/quiz-test-client/static/js/2.26bee750.chunk.js.LICENSE.txt",
-    "static/media/click.1b1743f7.wav": "/quiz-test-client/static/media/click.1b1743f7.wav"
+    "main.css": "/static/css/main.503dabb3.chunk.css",
+    "main.js": "/static/js/main.97e9a806.chunk.js",
+    "main.js.map": "/static/js/main.97e9a806.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.68f9e972.js",
+    "runtime-main.js.map": "/static/js/runtime-main.68f9e972.js.map",
+    "static/js/2.26bee750.chunk.js": "/static/js/2.26bee750.chunk.js",
+    "static/js/2.26bee750.chunk.js.map": "/static/js/2.26bee750.chunk.js.map",
+    "static/js/3.7cb42a9c.chunk.js": "/static/js/3.7cb42a9c.chunk.js",
+    "static/js/3.7cb42a9c.chunk.js.map": "/static/js/3.7cb42a9c.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.503dabb3.chunk.css.map": "/static/css/main.503dabb3.chunk.css.map",
+    "static/js/2.26bee750.chunk.js.LICENSE.txt": "/static/js/2.26bee750.chunk.js.LICENSE.txt",
+    "static/media/click.1b1743f7.wav": "/static/media/click.1b1743f7.wav"
   },
   "entrypoints": [
-    "static/js/runtime-main.50925f23.js",
+    "static/js/runtime-main.68f9e972.js",
     "static/js/2.26bee750.chunk.js",
     "static/css/main.503dabb3.chunk.css",
     "static/js/main.97e9a806.chunk.js"

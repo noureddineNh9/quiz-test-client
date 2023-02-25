@@ -1,17 +1,17 @@
 version: "3.8"
-services:
-   quiz.client:
-      build: .
-      ports:
-         - "5001:3000"
-      volumes:
-         - ./src:/app/src
-      stdin_open: true
-      tty: true
 
-   npm:
-      image: node:16.17.0-alpine
-      working_dir: /app
-      entrypoint: ["npm"]
-      volumes:
-         - ./:/app
+services:
+  client:
+    image: noureddinenh9/quiz-test-client
+    container_name: quiz-test.client
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.client.rule=Host(`quiz-test.nh9.dev`)"
+      - "traefik.http.routers.client.entrypoints=web"
+    networks:
+      - web
+
+networks:
+  web:
+    external:
+      name: traefik-net

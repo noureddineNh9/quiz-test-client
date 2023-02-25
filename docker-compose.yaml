@@ -2,8 +2,8 @@ version: "3.8"
 
 services:
   client:
-    image: noureddinenh9/quiz-test-client
     container_name: quiz-test.client
+    build: .
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.client.rule=Host(`quiz-test.nh9.dev`)"

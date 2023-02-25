@@ -6,8 +6,8 @@ services:
     build: .
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.client.rule=Host(`quiz-test.nh9.dev`)"
-      - "traefik.http.routers.client.entrypoints=web"
+      - "traefik.http.routers.quiz-test-client.rule=Host(`quiz-test.nh9.dev`)"
+      - "traefik.http.routers.quiz-test-client.entrypoints=web"
     networks:
       - web
 
